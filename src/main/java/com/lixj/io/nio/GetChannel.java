@@ -1,9 +1,8 @@
 package com.lixj.io.nio;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
 import java.nio.channels.FileChannel;
 
 /**
@@ -13,14 +12,39 @@ import java.nio.channels.FileChannel;
 public class GetChannel {
     public static final int BASE_SIZE = 1024;
 
-    public static void main(String[] args) throws FileNotFoundException {
-//        FileChannel fileChannel = new FileOutputStream("/getChannel").getChannel();
+    public static void main(String[] args) throws IOException {
 
-//        System.out.println(0x00000040);
+        FileChannel outFileChannel = new FileOutputStream("/Down By the Salley Garden.txt").getChannel();
 
-//        System.out.println(String.format(Integer.toBinaryString(64)), );
+        StringBuilder stringBuilder = new StringBuilder();
 
-        System.out.println(String.format("%1$'0'3s", "1"));
-//        System.out.println(String.format("%4$04d %3$04d %2$04d %1$04d", "a", "b", "c", "d"));
+        stringBuilder.append("Down by the salley gardens my love and I did meet;");
+        stringBuilder.append(System.lineSeparator());
+        stringBuilder.append("She passed the salley gardens with little snow-white feet.");
+        stringBuilder.append(System.lineSeparator());
+        stringBuilder.append("She bid me take love easy, as the leaves grow on the tree;");
+        stringBuilder.append(System.lineSeparator());
+        stringBuilder.append("But I, being young and foolish, with her did not agree.");
+        stringBuilder.append(System.lineSeparator());
+        stringBuilder.append("In a field by the river my love and I did stand,");
+        stringBuilder.append(System.lineSeparator());
+        stringBuilder.append("And on my leaning shoulder she laid her snow-white hand.");
+        stringBuilder.append(System.lineSeparator());
+        stringBuilder.append("She bid me take life easy, as the grass grows on the weirs;");
+        stringBuilder.append(System.lineSeparator());
+
+
+        outFileChannel.write(ByteBuffer.wrap(stringBuilder.toString().getBytes()));
+        outFileChannel.close();
+
+        FileChannel fileChannel = new RandomAccessFile("/Down By the Salley Garden.txt","rw").getChannel();
+
+        fileChannel.position(fileChannel.size());
+
+        fileChannel.write(ByteBuffer.wrap("But I was young and foolish, and now am full of tears.".getBytes()));
+
+        fileChannel.close();
+
+
     }
 }
