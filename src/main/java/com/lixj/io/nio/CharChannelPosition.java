@@ -1,7 +1,6 @@
 package com.lixj.io.nio;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -9,7 +8,7 @@ import java.nio.channels.FileChannel;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ChannelPosition {
+public class CharChannelPosition {
     public static final int BASE_SIZE = 8;
 
     public static void main(String[] args) throws IOException {
