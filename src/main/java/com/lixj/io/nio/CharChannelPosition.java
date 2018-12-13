@@ -13,10 +13,10 @@ public class CharChannelPosition {
 
     public static void main(String[] args) throws IOException {
         //初始化
-        FileChannel inFileChannel = new FileInputStream("/Down By the Salley Garden.txt").getChannel();
+        FileChannel inFileChannel = new FileInputStream("/柳园下.txt").getChannel();
 
         ByteBuffer byteBuffer = ByteBuffer.allocate(BASE_SIZE);
-        byteBuffer.limit(4);
+        byteBuffer.limit(5);
 
         String[] message = formatByteBuffer(byteBuffer);
         System.out.println("读取前通道的文件指针：" + inFileChannel.position());
