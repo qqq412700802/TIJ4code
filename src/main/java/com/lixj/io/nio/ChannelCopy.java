@@ -25,10 +25,12 @@ public class ChannelCopy {
             System.out.println("--------读取前------------");
             System.out.println(byteBuffer.position());
             System.out.println(byteBuffer.limit());
+            System.out.println(inFileChannel.position());
             System.out.println("--------读取前------------");
             System.out.println(inFileChannel.read(byteBuffer));
             System.out.println(byteBuffer.toString());
             byteBuffer.flip();
+            System.out.println(inFileChannel.position());
             System.out.println(byteBuffer.getChar());
             System.out.println(byteBuffer.position());
             System.out.println(byteBuffer.limit());
