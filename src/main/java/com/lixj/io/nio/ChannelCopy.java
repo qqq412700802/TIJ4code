@@ -6,13 +6,14 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
 
 /**
  * nio类
  * @author lixj
  */
 public class ChannelCopy {
-    public static final int BASE_SIZE = 8;
+    public static final int BASE_SIZE = 1024;
 
     public static void main(String[] args) throws IOException {
 
@@ -21,25 +22,17 @@ public class ChannelCopy {
 
         ByteBuffer byteBuffer = ByteBuffer.allocate(BASE_SIZE);
 
-        while (true) {
-            System.out.println("--------读取前------------");
-            System.out.println(byteBuffer.position());
-            System.out.println(byteBuffer.limit());
-            System.out.println(inFileChannel.position());
-            System.out.println("--------读取前------------");
-            System.out.println(inFileChannel.read(byteBuffer));
-            System.out.println(byteBuffer.toString());
-            byteBuffer.flip();
-            System.out.println(inFileChannel.position());
-            System.out.println(byteBuffer.getChar());
-            System.out.println(byteBuffer.position());
-            System.out.println(byteBuffer.limit());
+        inFileChannel.read(byteBuffer);
 
-        }
+        System.out.println(byteBuffer);
+        byteBuffer.rewind();
 
-//        while (inFileChannel.read(byteBuffer) != -1) {
-//            System.out.println(byteBuffer.toString());
-//        }
+        System.out.println(byteBuffer);
+
+        System.out.println(Charset.forName("GBK").decode(byteBuffer));
+
+        System.out.println(byteBuffer);
+
 
     }
 }
